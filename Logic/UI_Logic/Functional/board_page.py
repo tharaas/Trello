@@ -12,8 +12,5 @@ class BoardPage(BasePage):
         super().__init__(driver)
         self.menu_button = self._driver.find_element(By.XPATH, self.MENU_BUTTON)
 
-    #def login_button_is_displayed(self):
-        #return self.login_page.is_displayed()
-
     def click_on_menu_button_in_board(self):
         self.menu_button.click()

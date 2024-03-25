@@ -2,7 +2,7 @@ import unittest
 
 from Infra.browser_wrapper import BrowserWrapper
 from Logic.UI_Logic.Functional.home_page import HomePage
-from Utils.login import LoginPageActions
+from Utils.login_logout import LoginPageActions
 
 
 class TrelloLoginTest(unittest.TestCase):
@@ -11,7 +11,9 @@ class TrelloLoginTest(unittest.TestCase):
         self.driver = self.browser.get_driver()
 
     def tearDown(self):
+        self.login.logout_from_open_email()
         self.driver.quit()
+        self.driver.close()
 
     def test_click_on_login_flow(self):
         self.login = LoginPageActions(self.driver)

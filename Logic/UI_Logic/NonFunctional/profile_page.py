@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
 from Infra.base_page import BasePage
+from Utils.random_text import RandomText
 from Utils.read_from_env_file_like_username_password import Credentials
 from Utils.scroll import Scroll
 
@@ -16,7 +17,8 @@ class ProfilePage(BasePage):
         super().__init__(driver)
         self.credentials = Credentials()
         self.scroll = Scroll(self._driver)
-        self.new_bio_text = self.credentials.change_bio()
+        self.random_text = RandomText(self._driver)
+        self.new_bio_text = self.random_text.get_random_sentence()
         self.bio_text = self._driver.find_element(By.XPATH, self.BIO_TEXT)
 
         self.wait = WebDriverWait(driver, 10)

@@ -6,7 +6,7 @@ from Logic.UI_Logic.Functional.account_menu import AccountMenu
 from Logic.UI_Logic.Functional.home_page import HomePage
 from Logic.UI_Logic.NonFunctional.profile_page import ProfilePage
 from Logic.UI_Logic.NonFunctional.theme import Theme
-from Utils.login import LoginPageActions
+from Utils.login_logout import LoginPageActions
 
 
 class NonFunctionalTest(unittest.TestCase):
@@ -24,6 +24,7 @@ class NonFunctionalTest(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
+        self.driver.close()
 
     def test_change_bio_from_profile_page(self):
         self.account.click_on_profile_button()

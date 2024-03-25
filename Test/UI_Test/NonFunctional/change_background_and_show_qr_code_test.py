@@ -9,7 +9,7 @@ from Logic.UI_Logic.NonFunctional.board_menu import BoardMenu
 from Logic.UI_Logic.NonFunctional.change_background_button import ChangeBackground
 from Logic.UI_Logic.NonFunctional.qr_code_button import QRCode
 from Logic.UI_Logic.NonFunctional.show_qr_code_button import ShowQRCode
-from Utils.login import LoginPageActions
+from Utils.login_logout import LoginPageActions
 
 
 class BoardBackground(unittest.TestCase):
@@ -29,6 +29,7 @@ class BoardBackground(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
+        self.driver.close()
 
     def test_board_change_background(self):
         #self.board_page = BoardPage(self.driver)
