@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/tharaas/TrelloProject'
+                git 'https://github.com/tharaas/Trello'
             }
         }
         stage('Read .env file') {
