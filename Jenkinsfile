@@ -11,7 +11,7 @@ pipeline {
             steps {
                 // Read .env file and set environment variables
                 withCredentials([file(credentialsId: 'jenkins-env-file', variable: 'ENV_FILE')]) {
-                    bat 'type %ENV_FILE%'
+                    sh 'type %ENV_FILE%'
                     script {
                         def envFileContent = readFile(env.ENV_FILE).trim()
                         envFileContent.eachLine { line ->

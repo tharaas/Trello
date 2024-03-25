@@ -8,6 +8,7 @@ pip install urllib3==1.26.6
 pip3 install selenium
 pip install requests
 pip install jenkins
+pip install jira
 
 pip freeze > requirements.txt
 

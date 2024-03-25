@@ -1,57 +1,39 @@
-import json
 from selenium import webdriver
+
+from Utils.config_loader import ConfigLoader
 
 
 class BrowserWrapper:
     def __init__(self):
         self.driver = None
         print('test has started')
+        self.config_loader = ConfigLoader()
+        self.config = self.config_loader.load_config()
+        self.website_url = self.config['url']
 
-    def get_json_file(self):
-        with open("../infra/config.json", "r") as f:
-            config = json.load(f)
-        return config
+    def set_up_capabilities(self, browser_type):
+        options = None
+        if browser_type.lower() == 'chrome':
+            options = webdriver.ChromeOptions()
+        elif browser_type.lower() == 'firefox':
+            options = webdriver.FirefoxOptions()
+        if options is not None:
+            platform_name = self.config["platform"]
+            options.add_argument(f'--platformName={platform_name}')
+            return options
+        else:
+            raise ValueError("Unsupported browser type")
 
-    def get_hub_url(self):
-        self.json = self.get_json_file()
-        return self.json["hub"]
-
-    def get_driver(self, website_url="https://trello.com/"):
-        self.driver = webdriver.Chrome()
+    def get_driver(self, browser='chrome'):
+        if self.config["grid"]:
+            options = self.set_up_capabilities(browser)
+            self.driver = webdriver.Remote(command_executor=self.config["hub"], options=options)
+        else:
+            if browser == 'chrome':
+                self.driver = webdriver.Chrome()
+            elif browser == 'firefox':
+                self.driver = webdriver.Firefox()
+        url = self.config["url"]
+        self.driver.get(url)
         self.driver.maximize_window()
-        self.driver.get(website_url)
         return self.driver
-
-    def get_driver_grid(self, cap, website_url="https://trello.com/"):
-        self.url_hub = self.get_hub_url()
-        self.driver = webdriver.Remote(command_executor=self.url_hub, options=cap)
-        self.driver.get(website_url)
-        return self.driver
-
-    def get_cap_list(self):
-        self.json = self.get_json_file()
-
-        if "capabilities" not in self.json:
-            raise ValueError("Missing 'capabilities' configuration in config.json")
-
-        for browser in self.json["capabilities"]:
-            if browser["browserName"] == "chrome":
-                self.options_chrome = webdriver.ChromeOptions()
-                self.options_chrome.add_argument('--platform=MAC')
-
-            elif browser["browserName"] == "firefox":
-                self.options_firefox = webdriver.FirefoxOptions()
-                self.options_firefox.add_argument('--platform=MAC')
-
-            #elif browser["browserName"] == "safari":
-                #self.options_safari = webdriver.SafariOptions()
-                #self.options_safari.add_argument('--platform=MAC')
-            else:
-                raise ValueError(f"Unsupported browser: {browser['browserName']}")
-
-        cap_list = [self.options_chrome, self.options_firefox]
-        print(cap_list)
-        return cap_list
-
-    def get_teardown(self):
-        self.driver.quit()

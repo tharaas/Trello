@@ -1,25 +1,21 @@
 {
-  "capabilities":
-  [
-    {
-      "browserName": "chrome",
-      "platform": "mac",
-      "maxInstances": 5,
-      "seleniumProtocol": "WebDriver"
-    },
-    {
-      "browserName": "firefox",
-      "platform": "mac",
-      "maxInstances": 1,
-      "seleniumProtocol": "WebDriver"
-    }
+  "hub": "http://localhost:4444/wd/hub",
+  "url": "https://trello.com/",
+  "grid": true,
+  "parallel": true,
+  "serial": false,
+  "browser": "chrome",
+  "platform": "mac",
+  "browser_types": [
+    "chrome",
+    "firefox",
+    "edge"
   ],
   "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
   "maxSession": 5,
   "port": -1,
   "register": true,
   "registerCycle": 5000,
-  "hub": "http://localhost:4444/wd/hub",
   "nodeStatusCheckTimeout": 5000,
   "nodePolling": 5000,
   "role": "node",
@@ -28,6 +24,5 @@
   "debug": false,
   "servlets" : [],
   "withoutServlets": [],
-  "custom": {},
-  "execution": "parallel"
+  "custom": {}
 }
