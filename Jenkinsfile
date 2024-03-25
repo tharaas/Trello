@@ -38,11 +38,11 @@ pipeline {
     post {
         success {
             echo 'Tests passed successfully!'
-            slackSend channel: "#jenkins_update", message: "Build deployed successfully -"
+            slackSend channel: "#jenkins_update", message: "Build deployed successfully - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         }
         failure {
             echo 'Tests failed!'
-            slackSend(channel: "#jenkins_update", failOnError: true, message: "Build failed - ")
+            slackSend(channel: "#jenkins_update", failOnError: true, message: "Build failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
         }
     }
 }
