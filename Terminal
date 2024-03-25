@@ -1,0 +1,16 @@
+
+Trello API
+https://developer.atlassian.com/cloud/trello/rest/api-group-enterprises/#api-group-enterprises
+
+
+pip install urllib3==1.26.6
+
+pip3 install selenium
+pip install requests
+pip install jenkins
+
+
+java -jar selenium-server-4.17.0.jar hub
+java -jar selenium-server-4.17.0.jar node --port 5555 --selenium-manager true
+
+
