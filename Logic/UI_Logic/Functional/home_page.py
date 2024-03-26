@@ -1,3 +1,4 @@
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -20,7 +21,7 @@ class HomePage(BasePage):
         super().__init__(driver)
         self.credentials = Credentials()
         self.scroll = Scroll(self._driver)
-        self.account_button = self._driver.find_element(By.XPATH, self.ACCOUNT_BUTTON)
+        self.account_button = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, self.ACCOUNT_BUTTON)))
         self.board_button = self._driver.find_element(By.XPATH, self.BOARDS_BUTTON)
         self.board = self._driver.find_element(By.XPATH, self.BOARD)
         self.create_board = self._driver.find_element(By.XPATH, self.CREATE_BOARD)

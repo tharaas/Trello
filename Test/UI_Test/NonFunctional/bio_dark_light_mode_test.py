@@ -7,6 +7,7 @@ from Logic.UI_Logic.Functional.home_page import HomePage
 from Logic.UI_Logic.NonFunctional.profile_page import ProfilePage
 from Logic.UI_Logic.NonFunctional.theme import Theme
 from Utils.login_logout import LoginPageActions
+from jira_report import JiraReport
 
 
 class NonFunctionalTest(unittest.TestCase):
@@ -24,6 +25,16 @@ class NonFunctionalTest(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
+        if hasattr(self, 'assertion_passed') and self.assertion_passed:
+            try:
+                # Assertion passed, report bug to Jira
+                jira_report = JiraReport()
+                issue_summary = "Test Assertion Failure"
+                issue_description = "Test failed due to assertion failure in test_board_change_background"
+                jira_report.create_issue(issue_summary, issue_description)
+                print("Issue Created")
+            except Exception as e:
+                print("Failed to report bug to Jira:", str(e))
 
     def test_change_bio_from_profile_page(self):
         self.account.click_on_profile_button()
