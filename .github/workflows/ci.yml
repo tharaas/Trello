@@ -55,14 +55,14 @@ jobs:
     - name: Run tests
       run: |
             python  Test\API_Test\board_test.py
-
+            
     - name: Upload Test Report
       uses: actions/upload-artifact@v2
       if: always()
       with:
         name: Test-Report
         path: ./*.html
-
+        
     - name: Slack Notification
       uses: act10ns/slack@v1
       with:
