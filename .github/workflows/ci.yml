@@ -6,6 +6,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+
+    env: 
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     
     steps:
     - name: Checkout code
@@ -39,5 +42,13 @@ jobs:
     - name: Start Selenium Server nodes
       run: nohup java -jar selenium-server-4.17.0.jar node & sleep 5
       shell: bash
+      
+    - name: Slack Notification
+      uses: act10ns/slack@v1
+      with:
+        status: ${{ job.status }}
+        steps: ${{ toJson(steps) }}
+        channel: '#github_actions'
+      if: always()
 
-
+         
