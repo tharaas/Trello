@@ -7,7 +7,6 @@ from Utils.scroll import Scroll
 
 
 class BoardMenu(BasePage):
-
     CLOSE_MENU = "//a[contains(@title,'Close the board menu.')]"
     CHANGE_BACKGROUND = "//a[contains(@class,'change-background')]"
     PRINT_QR = "//a[contains(@class,'share')]"
@@ -27,7 +26,7 @@ class BoardMenu(BasePage):
 
     def click_on_close_menu_button(self):
         self.close_menu.click()
-        
+
     def click_on_change_background_button(self):
         self.background.click()
 

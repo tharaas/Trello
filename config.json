@@ -1,7 +1,7 @@
 {
   "hub": "http://localhost:4444/wd/hub",
   "url": "https://trello.com/",
-  "grid": true,
+  "grid": false,
   "parallel": true,
   "serial": false,
   "browser": "chrome",

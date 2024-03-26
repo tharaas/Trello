@@ -19,15 +19,19 @@ class CreateBoard(BasePage):
         self.board_title_element.click()
 
     def title_for_board(self):
-        self.board_title_element.send_keys(self.random_text.get_random_title())
+        board_title = self.random_text.get_random_title()
+        self.board_title_element.send_keys(board_title)
+        return board_title
 
     def get_title(self):
         self.click_on_board_title_button()
-        self.title_for_board()
+        board_title = self.title_for_board()
+        return board_title
 
     def click_create_button(self):
         self.create_button_element.click()
 
     def create_new_board(self):
-        self.get_title()
+        board_title = self.get_title()
         self.click_create_button()
+        return board_title
