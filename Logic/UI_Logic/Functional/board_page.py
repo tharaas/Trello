@@ -28,15 +28,18 @@ class BoardPage(BasePage):
 
     def get_list_title(self):
         self.list_title = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.LIST_TITLE)))
-        self.list_title.send_keys(self.random_text.get_random_title())
+        title_board = self.random_text.get_random_title()
+        self.list_title.send_keys(title_board)
+        return title_board
 
     def clcik_on_add_to_list(self):
         self.add_to_list_button = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.ADD_TO_LIST)))
         self.add_to_list_button.click()
 
     def add_list(self):
-        self.get_list_title()
+        title_list = self.get_list_title()
         self.clcik_on_add_to_list()
+        return title_list
 
     def add_card_to_the_list(self):
         self.add_a_card_button = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.ADD_A_CARD)))

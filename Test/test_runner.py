@@ -2,8 +2,7 @@ from typing import Type
 import unittest
 from concurrent.futures import ThreadPoolExecutor
 
-from Test.UI_Test.Functional.board_test import BoardTest
-from Test.UI_Test.Functional.login_test import TrelloLoginTest
+from Test.API_Test.board_test import BoardTest
 from Utils.config_loader import ConfigLoader
 
 serial_cases = [BoardTest]

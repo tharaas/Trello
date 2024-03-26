@@ -2,6 +2,7 @@ import unittest
 import time
 
 from Infra.browser_wrapper import BrowserWrapper
+from Logic.UI_Logic.Functional.board_page import BoardPage
 from Logic.UI_Logic.Functional.home_page import HomePage
 from Logic.UI_Logic.NonFunctional.background import Background
 from Logic.UI_Logic.Functional.board_menu import BoardMenu
@@ -9,6 +10,7 @@ from Logic.UI_Logic.NonFunctional.change_background_button import ChangeBackgrou
 from Logic.UI_Logic.NonFunctional.qr_code_button import QRCode
 from Logic.UI_Logic.NonFunctional.show_qr_code_button import ShowQRCode
 from Utils.login_logout import LoginPageActions
+from jira_report import JiraReport
 
 
 class BoardBackground(unittest.TestCase):
@@ -28,8 +30,19 @@ class BoardBackground(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
+        if hasattr(self, 'assertion_passed') and self.assertion_passed:
+            try:
+                # Assertion passed, report bug to Jira
+                jira_report = JiraReport()
+                issue_summary = "Test Assertion Failure"
+                issue_description = "Test failed due to assertion failure in test_board_change_background"
+                jira_report.create_issue(issue_summary, issue_description)
+                print("Issue Created")
+            except Exception as e:
+                print("Failed to report bug to Jira:", str(e))
 
     def test_board_change_background(self):
+        time.sleep(2)
         #self.board_page = BoardPage(self.driver)
         #self.board_page.click_on_menu_button_in_board()
         self.board_menu.click_on_change_background_button()

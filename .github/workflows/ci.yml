@@ -9,7 +9,16 @@ jobs:
 
     env: 
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-    
+      URL: ${{ secrets.URL }}
+      EMAIL_TXT: ${{ secrets.EMAIL_TXT }}
+      KEY: ${{ secrets.KEY }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+      TOKEN: ${{ secrets.TOKEN }}
+      JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
+      JIRA_URL: ${{ secrets.JIRA_URL }}
+      JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+      JIRA_PROJECT_KEY: ${{ secrets.JIRA_PROJECT_KEY }}
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -17,8 +26,8 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8'
-          
+        python-version: '3.11'
+
     - name: Set up environment variables
       run: |
         echo "Setting up environment variables"
@@ -43,10 +52,9 @@ jobs:
       run: nohup java -jar selenium-server-4.17.0.jar node & sleep 5
       shell: bash
 
-    - name: Run tests 
-      continue-on-error: true
+    - name: Run tests
       run: |
-            python -m pytest  tests\\tests_runner.py --html=report_api.html --self-contained-html          
+            python  Test\API_Test\board_test.py
             
     - name: Upload Test Report
       uses: actions/upload-artifact@v2
@@ -54,7 +62,7 @@ jobs:
       with:
         name: Test-Report
         path: ./*.html
-      
+        
     - name: Slack Notification
       uses: act10ns/slack@v1
       with:
@@ -63,4 +71,3 @@ jobs:
         channel: '#github_actions'
       if: always()
 
-         

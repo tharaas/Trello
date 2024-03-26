@@ -21,29 +21,41 @@ class Credentials:
     def get_url(self):
         url = os.getenv("URL")
         if url is None:
-            raise ValueError("bio text environment variable is not set")
+            raise ValueError("URL environment variable is not set")
         return url
-
-    def change_bio(self):
-        bio_text = os.getenv("NEW_BIO_TEXT")
-        if bio_text is None:
-            raise ValueError("bio text environment variable is not set")
-        return bio_text
 
     def get_token(self):
         token = os.getenv("TOKEN")
         if token is None:
-            raise ValueError("token environment variable is not set")
+            raise ValueError("TOKEN environment variable is not set")
         return token
 
     def get_key(self):
         key = os.getenv("KEY")
         if key is None:
-            raise ValueError("key environment variable is not set")
+            raise ValueError("KEY environment variable is not set")
         return key
 
-    def new_title_for_board(self):
-        board_title = os.getenv("BOARD_TITLE")
-        if board_title is None:
-            raise ValueError("key environment variable is not set")
-        return board_title
+    def get_jira_token(self):
+        jira_token = os.getenv("JIRA_TOKEN")
+        if jira_token is None:
+            raise ValueError("JIRA_TOKEN environment variable is not set")
+        return jira_token
+
+    def get_jira_url(self):
+        jira_url = os.getenv("JIRA_URL")
+        if jira_url is None:
+            raise ValueError("JIRA_URL environment variable is not set")
+        return jira_url
+
+    def get_jira_email(self):
+        jira_email = os.getenv("JIRA_EMAIL")
+        if jira_email is None:
+            raise ValueError("Email environment variable is not set")
+        return jira_email
+
+    def get_jira_project_key(self):
+        jira_project_key = os.getenv("JIRA_PROJECT_KEY")
+        if jira_project_key is None:
+            raise ValueError("jira project key environment variable is not set")
+        return jira_project_key
