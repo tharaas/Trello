@@ -26,3 +26,18 @@ jobs:
         echo "Installing dependencies"
         pip install -r requirements.txt
 
+    - name: Setup ChromeDriver
+      uses: browser-actions/setup-chrome@latest
+
+    - name: Setup FirefoxDriver
+      uses: browser-actions/setup-firefox@latest
+
+    - name: Start Selenium Server HUB
+      run: nohup java -jar selenium-server-4.17.0.jar hub & sleep 5
+      shell: bash
+
+    - name: Start Selenium Server nodes
+      run: nohup java -jar selenium-server-4.17.0.jar node & sleep 5
+      shell: bash
+
+
