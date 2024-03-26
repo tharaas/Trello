@@ -1,12 +1,10 @@
 pipeline {
     agent any
-
+     environment {
+        PYTHONPATH = "/Users/thara/PycharmProjects/Trello"
+        TEST_REPORTS = 'test-reports'
+    }
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/tharaas/Trello'
-            }
-        }
         stage('Read .env file') {
             steps {
                 // Read .env file and set environment variables
