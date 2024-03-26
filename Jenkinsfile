@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git url:'https://github.com/tharaas/Trello.git'
-            }
-        }
         stage('Read .env file') {
             steps {
                 // Read .env file and set environment variables
