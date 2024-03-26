@@ -7,4 +7,3 @@ class BasePage:
 
     def get_url_driver(self):
         return self._driver.current_url
-
