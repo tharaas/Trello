@@ -24,7 +24,6 @@ class NonFunctionalTest(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
-        self.driver.close()
 
     def test_change_bio_from_profile_page(self):
         self.account.click_on_profile_button()

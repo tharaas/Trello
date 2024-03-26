@@ -5,6 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from Infra.base_page import BasePage
 
+
 class Theme(BasePage):
 
     DARK_BUTTON = "//div[text()='Dark']"

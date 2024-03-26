@@ -13,7 +13,6 @@ class TrelloLoginTest(unittest.TestCase):
     def tearDown(self):
         self.login.logout_from_open_email()
         self.driver.quit()
-        self.driver.close()
 
     def test_click_on_login_flow(self):
         self.login = LoginPageActions(self.driver)
