@@ -7,7 +7,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
-    env: 
+    env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       URL: ${{ secrets.URL }}
       EMAIL_TXT: ${{ secrets.EMAIL_TXT }}

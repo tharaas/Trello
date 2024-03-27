@@ -30,7 +30,7 @@ class BoardBackground(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
-        if hasattr(self, 'assertion_passed') and self.assertion_passed:
+        if hasattr(self, '_outcome') and self._outcome.errors:
             try:
                 # Assertion passed, report bug to Jira
                 jira_report = JiraReport()
@@ -43,8 +43,8 @@ class BoardBackground(unittest.TestCase):
 
     def test_board_change_background(self):
         time.sleep(2)
-        #self.board_page = BoardPage(self.driver)
-        #self.board_page.click_on_menu_button_in_board()
+        self.board_page = BoardPage(self.driver)
+        self.board_page.click_on_menu_button_in_board()
         self.board_menu.click_on_change_background_button()
         self.change_background = ChangeBackground(self.driver)
         self.change_background.click_on_change_background_button()
@@ -57,6 +57,7 @@ class BoardBackground(unittest.TestCase):
     def test_board_Show_qr_code(self):
         self.board_menu.click_on_print_qr_button()
         self.show_qr = ShowQRCode(self.driver)
+
         self.show_qr.click_on_show_qr_code()
         time.sleep(2)
         self.qr_code = QRCode(self.driver)

@@ -34,6 +34,14 @@ class APIWrapper:
         }
         return headers
 
+    def get_query_search(self, search_text):
+        query = {
+            'query': search_text,
+            'key': self.key,
+            'token': self.token
+        }
+        return query
+
     def api_get_request(self, url):
         self.query = self.get_query()
         self.headers = self.get_headers()
@@ -42,6 +50,16 @@ class APIWrapper:
             return self.response
         else:
             return self.response.status_code
+
+    def api_search_get_request(self, url, search_text):
+        url_search = f"{url}/search"
+        self.query = self.get_query_search(search_text)
+        self.headers = self.get_headers()
+        self.response = self.my_request.get(url_search , headers=self.headers, params=self.query)
+        if self.response.ok:
+            return self.response
+        else:
+            return False
 
     def api_post_request(self, url, name):
         self.query_post = self.get_query_post(name)

@@ -24,3 +24,17 @@ class BoardPageAPI:
             return True
         else:
             return f"Error: {response.status_code}"
+
+    def search_board_name_in_search_api(self, search_board_name):
+        response = self.api_wrapper.api_search_get_request(self.url, search_board_name)
+        if response.ok:
+            data = response.json()
+            boards = data.get('boards', [])
+
+            # Check if the list of boards is non-empty
+            if boards:
+                return True
+            else:
+                return False
+        else:
+            return f"Error: {response.status_code}"

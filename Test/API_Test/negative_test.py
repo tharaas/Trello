@@ -4,10 +4,7 @@ import unittest
 from Infra.api_wrapper import APIWrapper
 from Infra.browser_wrapper import BrowserWrapper
 from Logic.API_Logic.board_page_api import BoardPageAPI
-from Logic.UI_Logic.Functional.board_page import BoardPage
-from Logic.UI_Logic.Functional.create_board_button import CreateBoard
 from Logic.UI_Logic.Functional.home_page import HomePage
-from Utils.API_URL import UrlAPI
 from Utils.login_logout import LoginPageActions
 from jira_report import JiraReport
 
@@ -24,7 +21,6 @@ class BoardTest(unittest.TestCase):
         self.home_page = HomePage(self.driver)
 
     def tearDown(self):
-        self.board_api.delete_board_from_api(self.title_id)
         self.driver.quit()
         if hasattr(self, '_outcome') and self._outcome.errors:
             try:
@@ -37,16 +33,7 @@ class BoardTest(unittest.TestCase):
             except AssertionError as e:
                 print("Failed to report bug to Jira:", str(e))
 
-    def test_create_board(self):
-        #create board and add list in UI
-        self.home_page.click_on_create_board_button()
-        time.sleep(4)
-        self.create_board = CreateBoard(self.driver)
-        board_title = self.create_board.create_new_board()
-        time.sleep(2)
-        self.board_page = BoardPage(self.driver)
-        self.board_page.add_list()
-        self.url_id = UrlAPI()
-        self.title_id = self.url_id.get_board_id(self.board_page.get_url_driver())
-        board_name = self.board_api.get_board_from_api(self.title_id)
-        self.assertEqual(board_name, board_title)
+    def test_search_board_that_does_not_exist(self):
+        #search with API
+        search_board_is_displayed = self.board_api.search_board_name_in_search_api("board_title")
+        self.assertFalse(search_board_is_displayed, "The Board is not exit")
