@@ -12,6 +12,7 @@ class JiraReport:
         self.jira_project_key = self.credentials.get_jira_project_key()
         self.auth_jira = JIRA(basic_auth=(self.jira_email, self.jira_token), options={'server': self.jira_url})
 
+    #create an issue in jira
     def create_issue(self, summery, description, issue_type="Bug"):
         issue_dict = {
             'project': {'key': self.jira_project_key},
