@@ -9,6 +9,7 @@ pip3 install selenium
 pip install requests
 pip install jenkins
 pip install jira
+pip install pytest-html
 
 pip freeze > requirements.txt
 

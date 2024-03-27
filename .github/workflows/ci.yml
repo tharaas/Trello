@@ -54,7 +54,7 @@ jobs:
 
     - name: Run tests
       run: |
-            python  test_runner.py
+            python  test_runner.py --html=report.html
 
     - name: Upload Test Report
       uses: actions/upload-artifact@v2
