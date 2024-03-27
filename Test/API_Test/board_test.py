@@ -51,3 +51,4 @@ class BoardTest(unittest.TestCase):
         board_name = self.board_api.get_board_from_api(id)
         print(board_name)
         self.assertEqual(board_name, board_title)
+
