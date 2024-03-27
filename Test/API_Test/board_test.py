@@ -50,4 +50,4 @@ class BoardTest(unittest.TestCase):
         id = self.url_id.get_board_id(self.board_page.get_url_driver())
         board_name = self.board_api.get_board_from_api(id)
         print(board_name)
-        self.assertEqual("board_name", board_title)
+        self.assertEqual(board_name, board_title)
