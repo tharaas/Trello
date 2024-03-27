@@ -24,6 +24,7 @@ class BoardTest(unittest.TestCase):
         self.home_page = HomePage(self.driver)
 
     def tearDown(self):
+        #delete the board that the test create
         self.board_api.delete_board_from_api(self.title_id)
         self.driver.quit()
         if hasattr(self, '_outcome') and self._outcome.errors:
