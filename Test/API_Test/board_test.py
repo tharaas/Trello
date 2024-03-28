@@ -27,7 +27,7 @@ class BoardTest(unittest.TestCase):
         #delete the board that the test create
         self.board_api.delete_board_from_api(self.title_id)
         self.driver.quit()
-        if hasattr(self, '_outcome') and self._outcome.errors:
+        if not self._outcome.success:
             try:
                 # Assertion passed, report bug to Jira
                 jira_report = JiraReport()

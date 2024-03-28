@@ -22,7 +22,7 @@ class APIWrapper:
     #post request needs name
     def get_query_post(self, name):
         query = {
-            'name': name,
+            'idList': name,
             'key': self.key,
             'token': self.token
         }
@@ -63,7 +63,8 @@ class APIWrapper:
 
     def api_post_request(self, url, name):
         self.query_post = self.get_query_post(name)
-        self.response = self.my_request.post(url, params=self.query_post)
+        self.headers = self.get_headers()
+        self.response = self.my_request.post(url, headers=self.headers, params=self.query_post)
         if self.response.ok:
             return self.response
         else:

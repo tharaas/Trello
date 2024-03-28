@@ -9,7 +9,7 @@ from Utils.login_logout import LoginPageActions
 from jira_report import JiraReport
 
 
-class BoardTest(unittest.TestCase):
+class NegativeTest(unittest.TestCase):
     def setUp(self):
         self.browser = BrowserWrapper()
         self.driver = self.browser.get_driver()

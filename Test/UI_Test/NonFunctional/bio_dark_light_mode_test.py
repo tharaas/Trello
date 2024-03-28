@@ -25,7 +25,7 @@ class NonFunctionalTest(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
-        if hasattr(self, '_outcome') and self._outcome.errors:
+        if not self._outcome.success:
             try:
                 # Assertion passed, report bug to Jira
                 jira_report = JiraReport()

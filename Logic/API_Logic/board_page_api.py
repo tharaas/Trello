@@ -38,3 +38,8 @@ class BoardPageAPI:
                 return False
         else:
             return f"Error: {response.status_code}"
+
+    def create_card_from_api(self, list_name):
+        card_url_id = f"{self.url}/cards"
+        response = self.api_wrapper.api_post_request(card_url_id, list_name)
+        return response
