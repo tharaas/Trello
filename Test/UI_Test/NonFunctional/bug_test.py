@@ -40,4 +40,4 @@ class BugTest(unittest.TestCase):
         time.sleep(2)
         self.theme = Theme(self.driver)
         light_mode = self.theme.click_on_light_button()
-        self.assertFalse(light_mode, "The mode is not light")
+        self.assertTrue(light_mode, "The mode is not light")
