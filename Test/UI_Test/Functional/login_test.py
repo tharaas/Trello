@@ -12,7 +12,6 @@ class TrelloLoginTest(unittest.TestCase):
         self.driver = self.browser.get_driver()
 
     def tearDown(self):
-        self.login.logout_from_open_email()
         self.driver.quit()
         if hasattr(self, '_outcome') and self._outcome.errors:
             try:

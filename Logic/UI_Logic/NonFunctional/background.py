@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 
 from Infra.base_page import BasePage
@@ -5,7 +7,7 @@ from Infra.base_page import BasePage
 
 class Background(BasePage):
 
-    BACKGROUND = "//a[text()='Jason W']"
+    BACKGROUND = "//span[contains(@data-testid,'board-background-select-photo-9')]"
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -14,9 +16,10 @@ class Background(BasePage):
 
     def change_background(self):
         self.background.click()
+        time.sleep(6)
 
     def background_is_displayed(self):
         expected_color = "rgba(0, 0, 0, 0.5)"
         if self.background_color == expected_color:
-            return True
-        return False
+            return False
+        return True

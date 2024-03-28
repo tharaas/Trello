@@ -21,7 +21,7 @@ class BoardPage(BasePage):
         super().__init__(driver)
         self.wait = WebDriverWait(driver, 10)
         self.random_text = RandomText(self._driver)
-        self.menu_button = self._driver.find_element(By.XPATH, self.MENU_BUTTON)
+        self.menu_button = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, self.MENU_BUTTON)))
 
     def click_on_menu_button_in_board(self):
         self.menu_button.click()
